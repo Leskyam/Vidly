@@ -52,12 +52,21 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -188,21 +197,101 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\CustomersController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
+    <Compile Include="DTOs\CustomerDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703212255312_InitialModel.cs" />
+    <Compile Include="Migrations\201703212255312_InitialModel.Designer.cs">
+      <DependentUpon>201703212255312_InitialModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703212357515_AddIsSubscribedToCustomer.cs" />
+    <Compile Include="Migrations\201703212357515_AddIsSubscribedToCustomer.Designer.cs">
+      <DependentUpon>201703212357515_AddIsSubscribedToCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703220025060_AddMembershipType.cs" />
+    <Compile Include="Migrations\201703220025060_AddMembershipType.Designer.cs">
+      <DependentUpon>201703220025060_AddMembershipType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703220033288_PopulateMembershipTypes.cs" />
+    <Compile Include="Migrations\201703220033288_PopulateMembershipTypes.Designer.cs">
+      <DependentUpon>201703220033288_PopulateMembershipTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703220120245_MakCustomerNameNotNull.cs" />
+    <Compile Include="Migrations\201703220120245_MakCustomerNameNotNull.Designer.cs">
+      <DependentUpon>201703220120245_MakCustomerNameNotNull.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703220151201_FixCustomerColumnName.cs" />
+    <Compile Include="Migrations\201703220151201_FixCustomerColumnName.Designer.cs">
+      <DependentUpon>201703220151201_FixCustomerColumnName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703220152086_PopulateCustomers.cs" />
+    <Compile Include="Migrations\201703220152086_PopulateCustomers.Designer.cs">
+      <DependentUpon>201703220152086_PopulateCustomers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703220241125_AddGenreAndMovie.cs" />
+    <Compile Include="Migrations\201703220241125_AddGenreAndMovie.Designer.cs">
+      <DependentUpon>201703220241125_AddGenreAndMovie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703220244045_MakeFieldsNotNull.cs" />
+    <Compile Include="Migrations\201703220244045_MakeFieldsNotNull.Designer.cs">
+      <DependentUpon>201703220244045_MakeFieldsNotNull.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703220244440_PopulateGenreAndMovie.cs" />
+    <Compile Include="Migrations\201703220244440_PopulateGenreAndMovie.Designer.cs">
+      <DependentUpon>201703220244440_PopulateGenreAndMovie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703220301125_AddNameToMembershipType.cs" />
+    <Compile Include="Migrations\201703220301125_AddNameToMembershipType.Designer.cs">
+      <DependentUpon>201703220301125_AddNameToMembershipType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703220303060_PopulateNameInMembershipType.cs" />
+    <Compile Include="Migrations\201703220303060_PopulateNameInMembershipType.Designer.cs">
+      <DependentUpon>201703220303060_PopulateNameInMembershipType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703220319336_AddDOBToCustomer.cs" />
+    <Compile Include="Migrations\201703220319336_AddDOBToCustomer.Designer.cs">
+      <DependentUpon>201703220319336_AddDOBToCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703220335141_TreatDOBAsNullable.cs" />
+    <Compile Include="Migrations\201703220335141_TreatDOBAsNullable.Designer.cs">
+      <DependentUpon>201703220335141_TreatDOBAsNullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703220344335_AddMoreGenresAndMovies.cs" />
+    <Compile Include="Migrations\201703220344335_AddMoreGenresAndMovies.Designer.cs">
+      <DependentUpon>201703220344335_AddMoreGenresAndMovies.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703220400074_AddNewPropsToMovies.cs" />
+    <Compile Include="Migrations\201703220400074_AddNewPropsToMovies.Designer.cs">
+      <DependentUpon>201703220400074_AddNewPropsToMovies.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703220411024_PopulateNewPropsToMovies.cs" />
+    <Compile Include="Migrations\201703220411024_PopulateNewPropsToMovies.Designer.cs">
+      <DependentUpon>201703220411024_PopulateNewPropsToMovies.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703220447244_TryAgainToPopulateDate.cs" />
+    <Compile Include="Migrations\201703220447244_TryAgainToPopulateDate.Designer.cs">
+      <DependentUpon>201703220447244_TryAgainToPopulateDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\CustomerFormViewModel.cs" />
+    <Compile Include="ViewModels\MovieViewModel.cs" />
     <Compile Include="ViewModels\RandomMovieViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -265,8 +354,9 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
-    <Content Include="Views\Customer\Details.cshtml" />
+    <Content Include="Views\Customer\Edit.cshtml" />
     <Content Include="Views\Movies\Index.cshtml" />
+    <Content Include="Views\Movies\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -285,6 +375,62 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201703212255312_InitialModel.resx">
+      <DependentUpon>201703212255312_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703212357515_AddIsSubscribedToCustomer.resx">
+      <DependentUpon>201703212357515_AddIsSubscribedToCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703220025060_AddMembershipType.resx">
+      <DependentUpon>201703220025060_AddMembershipType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703220033288_PopulateMembershipTypes.resx">
+      <DependentUpon>201703220033288_PopulateMembershipTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703220120245_MakCustomerNameNotNull.resx">
+      <DependentUpon>201703220120245_MakCustomerNameNotNull.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703220151201_FixCustomerColumnName.resx">
+      <DependentUpon>201703220151201_FixCustomerColumnName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703220152086_PopulateCustomers.resx">
+      <DependentUpon>201703220152086_PopulateCustomers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703220241125_AddGenreAndMovie.resx">
+      <DependentUpon>201703220241125_AddGenreAndMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703220244045_MakeFieldsNotNull.resx">
+      <DependentUpon>201703220244045_MakeFieldsNotNull.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703220244440_PopulateGenreAndMovie.resx">
+      <DependentUpon>201703220244440_PopulateGenreAndMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703220301125_AddNameToMembershipType.resx">
+      <DependentUpon>201703220301125_AddNameToMembershipType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703220303060_PopulateNameInMembershipType.resx">
+      <DependentUpon>201703220303060_PopulateNameInMembershipType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703220319336_AddDOBToCustomer.resx">
+      <DependentUpon>201703220319336_AddDOBToCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703220335141_TreatDOBAsNullable.resx">
+      <DependentUpon>201703220335141_TreatDOBAsNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703220344335_AddMoreGenresAndMovies.resx">
+      <DependentUpon>201703220344335_AddMoreGenresAndMovies.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703220400074_AddNewPropsToMovies.resx">
+      <DependentUpon>201703220400074_AddNewPropsToMovies.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703220411024_PopulateNewPropsToMovies.resx">
+      <DependentUpon>201703220411024_PopulateNewPropsToMovies.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703220447244_TryAgainToPopulateDate.resx">
+      <DependentUpon>201703220447244_TryAgainToPopulateDate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
