@@ -45,19 +45,21 @@ else
 @section scripts
 {
     <script language="javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             $(".js-btn-delete-customer").on("click",
-                function() {
-                    if (confirm("Are you sure to delete this Customer?")) {
-                        var sender = $(this);
-                        $.ajax({
-                            url: "/api/customers/" + sender.data("customer-id"),
-                            method: "DELETE",
-                            success: function() {
-                                sender.parents("tr").remove();
-                            }
-                        });
-                    }
+                function () {
+                    var sender = $(this);
+                    bootbox.confirm("Are you sure to delete this Customer?", function (result) {
+                        if (result) {
+                            $.ajax({
+                                url: "/api/customers/" + sender.data("customer-id"),
+                                method: "DELETE",
+                                success: function () {
+                                    sender.parents("tr").remove();
+                                }
+                            });
+                        }
+                    });
                 });
         })
     </script>
