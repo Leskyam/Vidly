@@ -18,27 +18,30 @@
 else
 {
     <table id="tblCustomers" class="table table-hover">
-        <tr>
-            <th>Customers</th>
-            <th>Membership Type</th>
-            <th>Discount Rate</th>
-            <th>Acctions</th>
-        </tr>
-        @foreach (var customer in Model)
-        {
+        <thead>
             <tr>
-                <td>@Html.ActionLink(customer.Name, "Edit", new {id = customer.Id})</td>
-                <td>@customer.MembershipType.Name</td>
-                <td>@customer.MembershipType.DiscountRate%</td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new {Id = customer.Id})
-                    |
-                    <button data-customer-id="@customer.Id" class="btn-link js-btn-delete-customer">Delete</button>
-                </td>
+                <th>Customers</th>
+                <th>Membership Type</th>
+                <th>Discount Rate</th>
+                <th>Acctions</th>
             </tr>
-            
-        }
+        </thead>
+        <tbody>
+            @foreach (var customer in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(customer.Name, "Edit", new { id = customer.Id })</td>
+                    <td>@customer.MembershipType.Name</td>
+                    <td>@customer.MembershipType.DiscountRate%</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { Id = customer.Id })
+                        |
+                        <button data-customer-id="@customer.Id" class="btn-link js-btn-delete-customer">Delete</button>
+                    </td>
+                </tr>
 
+            }
+        </tbody>
     </table>
 }
 
@@ -46,6 +49,9 @@ else
 {
     <script language="javascript">
         $(document).ready(function () {
+
+            $("#tblCustomers").DataTable();
+
             $("#tblCustomers").on("click", ".js-btn-delete-customer",
                 function () {
                     var sender = $(this);
