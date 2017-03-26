@@ -24,10 +24,8 @@ namespace Vidly.Controllers.Api
         {
             var customer = _db.Customers.SingleOrDefault(c => c.Id == id);
             if (customer == null)
-                //throw new HttpResponseException(HttpStatusCode.NotFound);
                 return NotFound();
 
-            //return CustomerDto.MapToCustomersDto(new List<Customer>(){(customer)}).Single();
             var customerDto = CustomerDto.MapToCustomersDto(new List<Customer>() {(customer)}).Single();
             return Ok(customerDto);
         }
@@ -37,7 +35,6 @@ namespace Vidly.Controllers.Api
         public IHttpActionResult PostCustomer(CustomerDto customerDto)
         {
             if (!ModelState.IsValid)
-                //throw new HttpResponseException(HttpStatusCode.BadRequest);
                 BadRequest();
 
             var dbCustomer = _db.Customers.Add(CustomerDto.MapFromCustomerDto(customerDto, new Customer()));
@@ -52,13 +49,11 @@ namespace Vidly.Controllers.Api
         public IHttpActionResult PutCustomer(CustomerDto customerDto)
         {
             if (!ModelState.IsValid)
-                //throw new HttpResponseException(HttpStatusCode.BadRequest);
                 return BadRequest();
 
             var dbCustomer = _db.Customers.SingleOrDefault(c => c.Id == customerDto.Id);
 
             if (dbCustomer == null)
-                //throw new HttpResponseException(HttpStatusCode.NotFound);
                 return NotFound();
 
             dbCustomer = CustomerDto.MapFromCustomerDto(customerDto, dbCustomer);
@@ -74,7 +69,6 @@ namespace Vidly.Controllers.Api
         {
             var dbCustomer = _db.Customers.SingleOrDefault(c => c.Id == id);
             if (dbCustomer == null)
-                //throw new HttpResponseException(HttpStatusCode.NotFound);
                 return NotFound();
 
             _db.Customers.Remove(dbCustomer);
@@ -83,8 +77,6 @@ namespace Vidly.Controllers.Api
             return Ok(true);
 
         }
-
-
 
         protected override void Dispose(bool disposing)
         {
