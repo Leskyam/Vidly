@@ -45,9 +45,10 @@ namespace Vidly.Controllers.Api
         {
             if (!ModelState.IsValid) return BadRequest();
 
-            movieDto.Id = _db.Movies.Add((Movie)MovieDto.Mapper(movieDto, new Movie())).Id;
+            var dbMovie = _db.Movies.Add((Movie)MovieDto.Mapper(movieDto, new Movie()));
             _db.SaveChanges();
 
+            movieDto.Id = dbMovie.Id;
             return Created($"{Request.RequestUri}/{movieDto.Id}", movieDto);
         }
 
