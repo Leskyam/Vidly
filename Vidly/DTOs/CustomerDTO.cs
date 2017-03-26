@@ -22,20 +22,6 @@ namespace Vidly.DTOs
 
         public static IEnumerable<CustomerDto> MapToCustomersDto(IEnumerable<Customer> customers)
         {
-            /* Old fashion:
-            foreach (var customer in customers)
-            {
-                customersDto.Add(new CustomerDto
-                {
-                    Id = customer.Id,
-                    Dob = customer.Dob,
-                    Name = customer.Name,
-                    IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter,
-                    MembershipTypeId = customer.MembershipTypeId
-                });
-            }
-            */
-            // New way:
             return customers.Select(customer => new CustomerDto()
             {
                 Id = customer.Id,
@@ -57,4 +43,5 @@ namespace Vidly.DTOs
         }
 
     }
+
 }

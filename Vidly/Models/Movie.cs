@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using Vidly.DTOs;
 
 namespace Vidly.Models
 {
-    public class Movie
+    public class Movie : IMovie
     {
         public int Id { get; set; }
 
