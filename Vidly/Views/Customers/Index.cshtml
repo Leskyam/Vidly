@@ -50,9 +50,8 @@ else
     <script language="javascript">
         $(document).ready(function () {
 
-            $("#tblCustomers").DataTable();
-
-            $("#tblCustomers").on("click", ".js-btn-delete-customer",
+            $("#tblCustomers").DataTable()
+                .on("click", ".js-btn-delete-customer",
                 function () {
                     var sender = $(this);
                     bootbox.confirm("Are you sure to delete this Customer?", function (result) {
