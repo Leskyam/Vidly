@@ -20,6 +20,8 @@ namespace Vidly.DTOs
 
         public byte MembershipTypeId { get; set; }
 
+        public string MembershipType { get; set; }
+
         public static IEnumerable<CustomerDto> MapToCustomersDto(IEnumerable<Customer> customers)
         {
             return customers.Select(customer => new CustomerDto()
@@ -28,6 +30,7 @@ namespace Vidly.DTOs
                 Name = customer.Name,
                 Dob = customer.Dob,
                 MembershipTypeId = customer.MembershipTypeId,
+                MembershipType = customer.MembershipType.Name,
                 IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter
             });
         }
